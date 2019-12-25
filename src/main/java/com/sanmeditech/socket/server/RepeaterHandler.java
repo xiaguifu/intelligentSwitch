@@ -58,29 +58,35 @@ public class RepeaterHandler implements IoHandler {
         }
     }
 
+    @Override
     public void sessionCreated(IoSession ioSession) throws Exception {
         System.out.println("session created");
         this.put(ioSession);
     }
 
+    @Override
     public void sessionOpened(IoSession ioSession) throws Exception {
         System.out.println("session opened");
         this.put(ioSession);
     }
 
+    @Override
     public void sessionClosed(IoSession ioSession) throws Exception {
         System.out.println("session closed");
         this.remove(ioSession);
     }
 
+    @Override
     public void sessionIdle(IoSession ioSession, IdleStatus idleStatus) throws Exception {
         System.out.println("session idle : " + idleStatus.toString());
     }
 
+    @Override
     public void exceptionCaught(IoSession ioSession, Throwable throwable) throws Exception {
         System.out.println("exception caught : " + throwable.toString());
     }
 
+    @Override
     public void messageReceived(IoSession ioSession, Object o) throws Exception {
         this.put(ioSession, o);//todo
 
@@ -93,15 +99,18 @@ public class RepeaterHandler implements IoHandler {
         ioSession.write(IoBuffer.wrap(data));//todo
     }
 
+    @Override
     public void messageSent(IoSession ioSession, Object o) throws Exception {
         System.out.println("message sent");
     }
 
+    @Override
     public void inputClosed(IoSession ioSession) throws Exception {
         System.out.println("input closed");
         ioSession.closeNow();
     }
 
+    @Override
     public void event(IoSession ioSession, FilterEvent filterEvent) throws Exception {
         System.out.println("event : " + filterEvent.toString());
     }
