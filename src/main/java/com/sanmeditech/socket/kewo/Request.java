@@ -32,11 +32,13 @@ public class Request implements Protocol {
         return bytes;
     }
 
+    @Override
     public byte[] encode() {
         this.totalLength = this.optionData.length + this.cmdData.length + 8;
         return encode(this.lora, this.optionData, this.cmdData, this.cnt);
     }
 
+    @Override
     public void decode(byte[] bytes) {
         int i = 0;
         this.lora = ByteUtils.read(bytes, i, lora_length);
@@ -53,6 +55,7 @@ public class Request implements Protocol {
         this.totalLength = this.optionData.length + this.cmdData.length + 8;
     }
 
+    @Override
     public int totalLength() {
         return this.totalLength;
     }

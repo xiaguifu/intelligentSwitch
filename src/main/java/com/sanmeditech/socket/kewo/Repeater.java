@@ -44,6 +44,7 @@ public class Repeater implements Protocol {
     }
 
 
+    @Override
     public byte[] encode() {
         this.totalLength = body.length + 16;
         return encode(this.address, this.isRequest, this.body);
@@ -58,6 +59,7 @@ public class Repeater implements Protocol {
     }
 
 
+    @Override
     public void decode(byte[] bytes) {
         if(check(bytes)) {
             int i = 2;
@@ -80,6 +82,7 @@ public class Repeater implements Protocol {
     }
 
 
+    @Override
     public int totalLength() {
         return this.totalLength;
     }

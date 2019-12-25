@@ -22,11 +22,13 @@ public class Option implements Protocol {
         return new byte[]{0, 0};
     }
 
+    @Override
     public byte[] encode() {
         this.totalLength = this.data.length + 2;
         return encode(this.type, this.data);
     }
 
+    @Override
     public void decode(byte[] bytes) {
         assert null != bytes && bytes.length >= 2;
         int i = 0;
@@ -39,6 +41,7 @@ public class Option implements Protocol {
         this.totalLength = length + 2;
     }
 
+    @Override
     public int totalLength() {
         return this.totalLength;
     }
